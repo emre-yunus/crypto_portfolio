@@ -1,12 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import {NavigationContainer} from "@react-navigation/native";
+import {SearchScreen} from "./components/SearchScreen";
+import {PortfolioScreen} from "./components/PortfolioScreen";
+import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
+
+const Tab = createMaterialTopTabNavigator();
+
+function ProvidedApp() {
+  return (
+      <>
+          <Banner/>
+          <NavigationContainer>
+              <Tab.Navigator>
+                  <Tab.Screen name="Search" component={SearchScreen} />
+                  <Tab.Screen name="Portfolio" component={PortfolioScreen} />
+              </Tab.Navigator>
+          </NavigationContainer>
+      </>
+  )
+}
+
+//Without this component the app overlaps with the statusbar
+function Banner() {
+    return(
+        <>
+            <Text></Text>
+        </>
+    )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <ProvidedApp/>
   );
 }
 
