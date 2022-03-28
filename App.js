@@ -4,6 +4,7 @@ import {SearchScreen} from "./components/SearchScreen";
 import {PortfolioScreen} from "./components/PortfolioScreen";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {CurrenciesProvider} from "./contexts/currenciesContext";
+import {WatchListProvider} from "./contexts/watchListContext";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -34,7 +35,9 @@ function Banner() {
 export default function App() {
   return (
       <CurrenciesProvider>
-          <ProvidedApp/>
+          <WatchListProvider>
+              <ProvidedApp/>
+          </WatchListProvider>
       </CurrenciesProvider>
   );
 }

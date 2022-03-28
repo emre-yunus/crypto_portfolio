@@ -30,8 +30,8 @@ export function CurrenciesProvider(props) {
 
     useEffect(() => getCurrencies(), []); //only happens on first render
 
-    const api = useMemo(() => ({currencies, getCurrencies}),
-        [currencies, getCurrencies]);
+    const api = useMemo(() => ({currencies, setCurrencies, getCurrencies}),
+        [currencies, setCurrencies, getCurrencies]);
 
     return (
         <CurrenciesContext.Provider value={api}>
