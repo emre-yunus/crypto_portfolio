@@ -4,19 +4,22 @@ import {Searchbar} from "react-native-paper";
 import {Chart} from "./Chart";
 import {useCurrenciesContext} from "../contexts/currenciesContext";
 import ScrollViewBase from "react-native-web/dist/exports/ScrollView/ScrollViewBase";
+import {useWatchListContext} from "../contexts/watchListContext";
 
 export function SearchScreen() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter, setFilter] = useState('');
     const [baseId, setBaseId] = useState("bitcoin");
     const [quoteId, setQuoteId] = useState("tether");
+    const {currencyPairs, setCurrencyPairs} = useWatchListContext();
 
     const onChangeSearch = (query) => setSearchQuery(query);
     const changeList = () => {setFilter(searchQuery)};
+    const addToPortfolio = () => {setCurrencyPairs([...currencyPairs, [baseId, quoteId]])};
 
     return(
         <>
-            <Button title={"Add to watchlist"}/>
+            <Button onPress={addToPortfolio} title={"Add to watchlist"}/>
             <Chart baseId={baseId} quoteId={quoteId}/>
             <Searchbar
                 placeholder="Search"
