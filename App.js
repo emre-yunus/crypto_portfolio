@@ -3,10 +3,12 @@ import {NavigationContainer} from "@react-navigation/native";
 import {SearchScreen} from "./components/SearchScreen";
 import {PortfolioScreen} from "./components/PortfolioScreen";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
+import {CurrenciesProvider} from "./contexts/currenciesContext";
 
 const Tab = createMaterialTopTabNavigator();
 
 function ProvidedApp() {
+
   return (
       <>
           <Banner/>
@@ -31,7 +33,9 @@ function Banner() {
 
 export default function App() {
   return (
-      <ProvidedApp/>
+      <CurrenciesProvider>
+          <ProvidedApp/>
+      </CurrenciesProvider>
   );
 }
 
