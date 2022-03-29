@@ -6,6 +6,7 @@ import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {CurrenciesProvider} from "./contexts/currenciesContext";
 import {WatchListProvider} from "./contexts/watchListContext";
+import {HomeScreen} from "./components/HomeScreen";
 
 const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -25,7 +26,7 @@ function ProvidedApp() {
           <Banner/>
           <NavigationContainer>
               <Drawer.Navigator>
-                  <Drawer.Screen name="Home" component={PortfolioScreen} />
+                  <Drawer.Screen name="Home" component={HomeScreen} />
                   <Drawer.Screen name="Charts" component={Charts} />
               </Drawer.Navigator>
           </NavigationContainer>
