@@ -15,13 +15,15 @@ export function PortfolioScreen() {
 
 function PortfolioChart(props) {
     const {baseId, quoteId} = props;
+    const {currencyPairs, setCurrencyPairs} = useWatchListContext();
 
+    //TODO: when removing two charts from watchlist --> error --> fix it.
+    const removeFromWatchlist = () => {setCurrencyPairs(currencyPairs.filter(c => (c[0] !== baseId || c[1] !== quoteId)));}
 
-    //TODO: add button to remove from portfolio
     return (
         <>
             <Chart baseId={baseId} quoteId={quoteId}/>
-            <Button title={"Remove Chart"}/>
+            <Button onPress={removeFromWatchlist} title={"Remove Chart"}/>
         </>
     )
 }
