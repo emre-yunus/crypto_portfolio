@@ -1,23 +1,33 @@
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Button, Platform, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {SearchScreen} from "./components/SearchScreen";
 import {PortfolioScreen} from "./components/PortfolioScreen";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
+import {createDrawerNavigator} from "@react-navigation/drawer";
 import {CurrenciesProvider} from "./contexts/currenciesContext";
 import {WatchListProvider} from "./contexts/watchListContext";
 
 const Tab = createMaterialTopTabNavigator();
+const Drawer = createDrawerNavigator();
+
+function Charts() {
+    return(
+        <Tab.Navigator>
+            <Tab.Screen name="Search" component={SearchScreen} />
+            <Tab.Screen name="Portfolio" component={PortfolioScreen} />
+        </Tab.Navigator>
+    )
+}
 
 function ProvidedApp() {
-
   return (
       <>
           <Banner/>
           <NavigationContainer>
-              <Tab.Navigator>
-                  <Tab.Screen name="Search" component={SearchScreen} />
-                  <Tab.Screen name="Portfolio" component={PortfolioScreen} />
-              </Tab.Navigator>
+              <Drawer.Navigator>
+                  <Drawer.Screen name="Home" component={PortfolioScreen} />
+                  <Drawer.Screen name="Charts" component={Charts} />
+              </Drawer.Navigator>
           </NavigationContainer>
       </>
   )
