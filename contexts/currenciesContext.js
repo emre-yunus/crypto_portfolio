@@ -19,9 +19,8 @@ export function CurrenciesProvider(props) {
             apiData.push(responseJson)
             //apiData[0]["data"].map(o => symbols[o["name"]] = o["symbol"]); // puts names and symbols of currencies in symbols object useState({})
             //apiData[0]["data"].map(o => symbols[0][o["name"]] = o["symbol"]); //for object in array useState([{}])
-            apiData[0]["data"].map((v, i) => {symbols[i] = [v["baseId"], v["baseSymbol"], v["quoteId"], v["quoteSymbol"]]});
+            apiData[0]["data"].map((v, i) => {symbols[i] = [v["baseId"], v["baseSymbol"], v["quoteId"], v["quoteSymbol"]]}); //last boolean is about whether it's on the watchlist or not
             setCurrencies(symbols);
-            return symbols;
         } catch (error) {
             console.error(error);
             console.log("Error has occurred: API couldn't fetch symbols data")

@@ -3,24 +3,32 @@ import {Button, Text, View, ScrollView} from "react-native";
 import {Searchbar} from "react-native-paper";
 import {Chart} from "./Chart";
 import {useCurrenciesContext} from "../contexts/currenciesContext";
-import ScrollViewBase from "react-native-web/dist/exports/ScrollView/ScrollViewBase";
 import {useWatchListContext} from "../contexts/watchListContext";
 
 export function SearchScreen() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter, setFilter] = useState('');
-    const [baseId, setBaseId] = useState("bitcoin");
-    const [quoteId, setQuoteId] = useState("tether");
-    const {currencyPairs, setCurrencyPairs} = useWatchListContext();
+    const [shownCurrency, setShownCurrency] = useState(["bitcoin", "tether"]);
+    const {currencyPairs, setCurrencyPairs} = useWatchListContext(); //list of pairs shown on watchlist
 
     const onChangeSearch = (query) => setSearchQuery(query);
     const changeList = () => {setFilter(searchQuery)};
-    const addToPortfolio = () => {setCurrencyPairs([...currencyPairs, [baseId, quoteId]])};
+
+
+    const addToPortfolio = () => {
+        let add = true;
+        for (let i = 0; i < currencyPairs.length; i++) {
+            if(currencyPairs[i][0] === shownCurrency[0] && currencyPairs[i][1] === shownCurrency[1]) {
+                add = false;
+            }
+        }
+        if(add) setCurrencyPairs([...currencyPairs, [shownCurrency[0], shownCurrency[1]]]);
+    };
 
     return(
         <>
             <Button onPress={addToPortfolio} title={"Add to watchlist"}/>
-            <Chart baseId={baseId} quoteId={quoteId}/>
+            <Chart baseId={shownCurrency[0]} quoteId={shownCurrency[1]}/>
             <Searchbar
                 placeholder="Search"
                 onChangeText={onChangeSearch}
@@ -28,7 +36,7 @@ export function SearchScreen() {
                 onSubmitEditing={changeList}
                 value={searchQuery}
             />
-            <ListOfCurrencies setBaseId={setBaseId} setQuoteId={setQuoteId} filter={filter}/>
+            <ListOfCurrencies setShownCurrency={setShownCurrency} filter={filter}/>
         </>
     )
 }
@@ -36,7 +44,7 @@ export function SearchScreen() {
 function ListOfCurrencies(props) {
     const {currencies} = useCurrenciesContext();
     const [currencyList, setCurrencyList] = useState(currencies);
-    const {setBaseId, setQuoteId, filter} = props;
+    const {setShownCurrency, filter} = props;
 
     useEffect(() => {setCurrencyList(currencies)}, [currencies]);
 
@@ -55,8 +63,7 @@ function ListOfCurrencies(props) {
             <ScrollView>
                 {currencyList.map((c, i) =>
                     <Button onPress={() => {
-                        setBaseId(c[0]);
-                        setQuoteId(c[2]);
+                        setShownCurrency([c[0], c[2]]);
                     }} key={i} title={`${c[0]} (${c[1]}) / ${c[2]} (${c[3]})`}/>)}
             </ScrollView>
         </View>
