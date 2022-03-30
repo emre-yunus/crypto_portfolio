@@ -18,7 +18,7 @@ function Charts() {
     return(
         <Tab.Navigator>
             <Tab.Screen name="Search" component={SearchScreen} />
-            <Tab.Screen name="Portfolio" component={PortfolioScreen} />
+            <Tab.Screen name="Watchlist" component={PortfolioScreen} />
         </Tab.Navigator>
     )
 }

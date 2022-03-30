@@ -6,7 +6,6 @@ import {useColorContext} from "../contexts/colorContext";
 export function SettingsScreen() {
     const {colorPositive, setColorPositive, colorNegative, setColorNegative} = useColorContext();
     const [changeColorPositive, setChangeColorPositive] = useState(true);
-    const [changeColorNegative, setChangeColorNegative] = useState(false);
 
     const styles = StyleSheet.create({
         squarePositive: {
@@ -42,7 +41,6 @@ export function SettingsScreen() {
                     <View style={styles.squarePositive}></View>
                     <Button title={'pick color'} onPress={() => {
                                                                     setChangeColorPositive(true);
-                                                                    setChangeColorNegative(false);
                                                                 }}/>
                 </View>
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -50,7 +48,6 @@ export function SettingsScreen() {
                     <View style={styles.squareNegative}></View>
                     <Button title={'pick color'} onPress={() => {
                                                                     setChangeColorPositive(false);
-                                                                    setChangeColorNegative(true);
                                                                 }}/>
                 </View>
             </View>
