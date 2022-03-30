@@ -1,4 +1,4 @@
-import {Button, Platform, StyleSheet, Text, View} from 'react-native';
+import {Text} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {SearchScreen} from "./components/SearchScreen";
 import {PortfolioScreen} from "./components/PortfolioScreen";

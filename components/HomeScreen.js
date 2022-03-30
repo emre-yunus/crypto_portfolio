@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, View} from 'react-native';
 import { useWindowDimensions } from 'react-native';
 
 export function HomeScreen() {

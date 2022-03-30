@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useState} from "react";
-import {Button, Text, View, ScrollView} from "react-native";
+import {useEffect, useState} from "react";
+import {Button, View, ScrollView} from "react-native";
 import {Searchbar} from "react-native-paper";
 import {Chart} from "./Chart";
 import {useCurrenciesContext} from "../contexts/currenciesContext";
