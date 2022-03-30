@@ -34,7 +34,7 @@ export function SettingsScreen() {
     return(
         <>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 50}}>Chart color (in development)</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 25, marginBottom: 50, marginTop: 20}}>Chart color</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <View style={{justifyContent: 'center', alignItems: 'center', marginRight: 80}}>
