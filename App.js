@@ -9,6 +9,7 @@ import {WatchListProvider} from "./contexts/watchListContext";
 import {HomeScreen} from "./components/HomeScreen";
 import {InfoScreen} from "./components/InfoScreen";
 import {SettingsScreen} from "./components/SettingsScreen"
+import {ColorProvider} from "./contexts/colorContext";
 
 const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -49,10 +50,12 @@ function Banner() {
 
 export default function App() {
   return (
-      <CurrenciesProvider>
-          <WatchListProvider>
-              <ProvidedApp/>
-          </WatchListProvider>
-      </CurrenciesProvider>
+      <ColorProvider>
+          <CurrenciesProvider>
+              <WatchListProvider>
+                  <ProvidedApp/>
+              </WatchListProvider>
+          </CurrenciesProvider>
+      </ColorProvider>
   );
 }

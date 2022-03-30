@@ -1,6 +1,7 @@
 import {View, Text} from "react-native";
 import {useEffect, useState} from "react";
 import {VictoryAxis, VictoryCandlestick, VictoryChart, VictoryTheme} from "victory-native";
+import {useColorContext} from "../contexts/colorContext";
 
 const initialData = [
     {x: new Date(2016, 6, 1), open: 10, close: 14.45454648500, high: 15, low: 4},
@@ -10,8 +11,10 @@ const initialData = [
 ];
 
 export function Chart(props) {
-    const [data, setData] = useState(initialData);
     const {baseId, quoteId} = props;
+    const [data, setData] = useState(initialData);
+    const {colorPositive, colorNegative} = useColorContext();
+
 
     useEffect(() => {
         async function settingData() {
@@ -33,7 +36,7 @@ export function Chart(props) {
 
                 />
                 <VictoryCandlestick
-                    candleColors={{ positive: "#3dcc3d", negative: "#c43a31" }}
+                    candleColors={{ positive: colorPositive, negative: colorNegative }}
                     data={
                         data.slice(-30)
                     }
